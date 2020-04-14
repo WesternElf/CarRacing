@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IDrivable 
 {
-    float FuelCount { get; set; }
+    float FuelCount { get; }
     void Die();
     void TakeFuel();
 }

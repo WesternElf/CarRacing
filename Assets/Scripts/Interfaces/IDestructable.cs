@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public interface IDestructable 
+﻿namespace Scripts.Interfaces
 {
-    float HitPoints { get; set; }
-
+    public interface IDestructable 
+    {
+        float HitPoints { get; }
+    }
 }

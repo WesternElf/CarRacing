@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
+using Scripts.Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets.Resources.Scripts
+namespace Scripts
 {
-    public class Player : MonoBehaviour, IDrivable
+    public class Player : MonoBehaviour
     {
         [SerializeField] private float speed;
-        [SerializeField] private float fuelCount = 100;
+        [SerializeField] private float fuelCount = 100f;
         [SerializeField] private Image fuelImage;
         private float damping = 0.3f;
         private Rigidbody rigidbody;
@@ -18,27 +18,25 @@ namespace Assets.Resources.Scripts
         private void Start()
         {
             rigidbody = GetComponent<Rigidbody>();
-            fuelImage.fillAmount = FuelCount / 100;
             StartCoroutine(FuelChanging());
         }
 
         private void Update()
         {
-            fuelImage.fillAmount = FuelCount / 100;
             Movement();
         }
 
         private void Movement()
         {
-            Vector3 horizontal = transform.right * Input.GetAxis("Horizontal");
-            Vector3 vertical = transform.forward * Input.GetAxis("Vertical");
+            var horizontal = transform.right * Input.GetAxis("Horizontal");
+            var vertical = transform.forward * Input.GetAxis("Vertical");
 
-            Vector3 moving = horizontal + vertical;
+            var moving = horizontal + vertical;
             moving.Normalize();
 
             moving *= speed;
 
-            if (moving.magnitude > 0)
+            if (moving.magnitude > 0f)
             {
                 rigidbody.AddForce(moving);
             }
@@ -49,11 +47,16 @@ namespace Assets.Resources.Scripts
 
         }
 
-        public void Die()
+        private IEnumerator FuelChanging()
         {
-            Debug.Log("Catch!");
+            while (FuelCount > 0f)
+            {
+                fuelCount -= 1f;
+                fuelImage.fillAmount = FuelCount / 100f;
+                //Debug.Log(FuelCount);
+                yield return new WaitForSeconds(1f);
+            }
         }
-
 
         private void OnTriggerEnter(Collider other)
         {
@@ -63,27 +66,23 @@ namespace Assets.Resources.Scripts
             }
 
             IDestructable destructable = other.gameObject.GetComponent<IDestructable>();
-            if(destructable != null)
+            if (destructable != null)
             {
                 Die();
             }
         }
-        
+
         public void TakeFuel()
         {
-            fuelCount = Mathf.Clamp(FuelCount + 20, 0, 100);
+            fuelCount = Mathf.Clamp(FuelCount + 20f, 0f, 100f);
             //Debug.Log("New count: " + FuelCount);
         }
 
-        private IEnumerator FuelChanging()
+        public void Die()
         {
-            while (FuelCount > 0)
-            {
-                fuelCount -= 2;
-                Debug.Log(FuelCount);
-                yield return new WaitForSeconds(1f);
-            }
-  
+            Debug.Log("You died!");
+        
         }
+
     }
 }

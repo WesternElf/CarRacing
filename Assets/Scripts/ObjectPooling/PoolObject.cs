@@ -1,18 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class PoolObject : MonoBehaviour
+namespace Scripts.ObjectPooling
 {
-    // Start is called before the first frame update
-    void Start()
+    public class PoolObject : MonoBehaviour
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public void ReturnToPool()
+        {
+            gameObject.SetActive(false);
+        }
     }
 }

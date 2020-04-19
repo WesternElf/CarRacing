@@ -7,13 +7,13 @@ namespace Scripts
 {
     public class Player : MonoBehaviour
     {
+        private const string BuildTag = "Build";
+        
         [SerializeField] private float speed;
         [SerializeField] private float fuelCount = 100f;
         [SerializeField] private Image fuelImage;
         private float damping = 0.3f;
         private Rigidbody rigidbody;
-
-        public float FuelCount => fuelCount;
 
         private void Start()
         {
@@ -42,25 +42,23 @@ namespace Scripts
             }
             else
             {
-                rigidbody.velocity = rigidbody.velocity * damping;
+                rigidbody.velocity *= damping;
             }
-
         }
 
         private IEnumerator FuelChanging()
         {
-            while (FuelCount > 0f)
+            while (fuelCount > 0f)
             {
                 fuelCount -= 1f;
-                fuelImage.fillAmount = FuelCount / 100f;
-                //Debug.Log(FuelCount);
+                fuelImage.fillAmount = fuelCount / 100f;
                 yield return new WaitForSeconds(1f);
             }
         }
-
+        
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Build"))
+            if (other.CompareTag(BuildTag))
             {
                 TakeFuel();
             }
@@ -74,15 +72,12 @@ namespace Scripts
 
         public void TakeFuel()
         {
-            fuelCount = Mathf.Clamp(FuelCount + 20f, 0f, 100f);
-            //Debug.Log("New count: " + FuelCount);
+            fuelCount = Mathf.Clamp(fuelCount + 20f, 0f, 100f);
         }
 
         public void Die()
         {
             Debug.Log("You died!");
-        
         }
-
     }
 }

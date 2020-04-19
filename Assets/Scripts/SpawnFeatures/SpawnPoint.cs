@@ -1,53 +1,56 @@
 ﻿using System.Collections;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
-namespace Scripts.SpawnFeatures
+namespace SpawnFeatures
 {
     public class SpawnPoint : MonoBehaviour
     {
-        [Header("Spawn objects list")] [SerializeField]
-        private GameObject[] spawnObject;
+        [Header("Spawn objects list")] 
+        [SerializeField] private GameObject[] spawnObject;
         [Header("Spawn attributes")]
-        [SerializeField, Range(0.0f, 10.0f)]
-        private int minSpawnDelay;
-        [SerializeField, Range(0.0f, 10.0f)]
-        private int maxSpawnDelay;
+        [SerializeField, Range(0.0f, 10.0f)] private int minSpawnDelay;
+        [SerializeField, Range(0.0f, 10.0f)] private int maxSpawnDelay;
         [SerializeField, Tooltip("Place, where objects spawned")] private Transform spawnStartPoint;
         [SerializeField] private GameObject emptyObject;
 
-        public Transform SpawnStartPoint => spawnStartPoint;
-        public GameObject[] SpawnObject => spawnObject;
-        public GameObject EmptyObject => emptyObject;
-
+        private Coroutine spawningCoroutine;
+        
         private void Start()
         {
-            StartCoroutine(StartSpawn());
+            spawningCoroutine = StartCoroutine(StartSpawn());
         }
 
-        protected IEnumerator StartSpawn()
+        private IEnumerator StartSpawn()
         {
             while (true)
             {
-                //Debug.Log("Spawn!");
-                Spawner();
+                SpawnRandomObject();
                 yield return new WaitForSeconds(Random.Range(minSpawnDelay, maxSpawnDelay));
             }
-           
         }
-
-        protected GameObject GetRandomObject()
+        
+        private void SpawnRandomObject()
         {
-            var randomObject = SpawnObject[Random.Range(0, SpawnObject.Length)];
-            //Debug.Log(randomObject.name);
-
-            return randomObject;
+            Instantiate(GetRandomObject(), GetPositionForNewObject(), spawnStartPoint.rotation, emptyObject.transform);
         }
 
-        protected virtual void Spawner()
+        protected virtual Vector3 GetPositionForNewObject()
         {
-            var spawnObj = Instantiate(GetRandomObject(), SpawnStartPoint.position, SpawnStartPoint.rotation);
-            spawnObj.transform.parent = EmptyObject.transform;
+            return spawnStartPoint.position;
         }
 
+        private GameObject GetRandomObject()
+        {
+            return spawnObject[Random.Range(0, spawnObject.Length)];
+        }
+
+        private void OnDestroy()
+        {
+            if (spawningCoroutine != null)
+            {
+                StopCoroutine(spawningCoroutine);
+            }
+        }
     }
 }

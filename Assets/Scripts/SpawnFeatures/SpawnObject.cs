@@ -1,9 +1,8 @@
 ﻿using System.Collections;
-using System.Runtime.InteropServices;
 using Scripts.Interfaces;
 using UnityEngine;
 
-namespace Scripts.SpawnFeatures
+namespace SpawnFeatures
 {
     [RequireComponent(typeof(Rigidbody))]
     public class SpawnObject : MonoBehaviour, IDestructable
@@ -12,10 +11,8 @@ namespace Scripts.SpawnFeatures
         [SerializeField] private float hitPoints;
         [SerializeField] private GameObject player;
         private float outPosZ = -20f;
-
         public float HitPoints => hitPoints;
-
-
+        
         private void OnValidate()
         {
             if(speed <= 0f)
@@ -44,14 +41,12 @@ namespace Scripts.SpawnFeatures
 
             if (objectPosZ > outPosZ)
             {
-                transform.Translate(player.transform.right * speed * Time.deltaTime);
+                transform.Translate(player.transform.right * (speed * Time.deltaTime));
             }
             else
             {
-                Debug.Log("Destroy");
                 Destroy(gameObject);
             }
-           
         }
     }
 }

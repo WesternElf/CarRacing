@@ -19,24 +19,16 @@ namespace Scripts
         {
             rigidbody = GetComponent<Rigidbody>();
             StartCoroutine(FuelChanging());
-            UpdateManager.Instance.OnUpdateMethod += Movement;
+            UpdateManager.Instance.OnUpdateEvent += Movement;
         }
 
         private void OnDestroy()
         {
-            UpdateManager.Instance.OnUpdateMethod -= Movement;
-        }
-
-      
-
-        private void Update()
-        {
-            //Movement();
+            UpdateManager.Instance.OnUpdateEvent -= Movement;
         }
 
         private void Movement()
         {
-
             var horizontal = transform.right * Input.GetAxis("Horizontal");
             var vertical = transform.forward * Input.GetAxis("Vertical");
 

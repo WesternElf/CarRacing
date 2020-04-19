@@ -151,10 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnObject:
-  - {fileID: 198648, guid: 298fe3c26d3cb144faebe3dc048a26a8, type: 3}
-  - {fileID: 188570, guid: 410dd8f6082a58c419287fce7007a783, type: 3}
-  - {fileID: 112746, guid: 7349374439187ba46bd7b62ff2227bf2, type: 3}
-  - {fileID: 112746, guid: 7349374439187ba46bd7b62ff2227bf2, type: 3}
+  - {fileID: 5063609695569942599, guid: 33be47e79ec563241b7b34541ba4deb1, type: 3}
   minSpawnDelay: 1
   maxSpawnDelay: 2
   spawnStartPoint: {fileID: 17637031}
@@ -722,7 +719,6 @@ MonoBehaviour:
   maxSpawnDelay: 3
   spawnStartPoint: {fileID: 376543651}
   emptyObject: {fileID: 902932140}
-  posX: 0
   minPosX: 3
   maxPosX: 15
 --- !u!1 &444821982
@@ -755,10 +751,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnObject:
-  - {fileID: 198648, guid: 298fe3c26d3cb144faebe3dc048a26a8, type: 3}
-  - {fileID: 188570, guid: 410dd8f6082a58c419287fce7007a783, type: 3}
-  - {fileID: 145902, guid: 39b5ad9fd45e9074fa1a30bcd97fa639, type: 3}
-  - {fileID: 112746, guid: 7349374439187ba46bd7b62ff2227bf2, type: 3}
+  - {fileID: 5063609695569942599, guid: 33be47e79ec563241b7b34541ba4deb1, type: 3}
   minSpawnDelay: 1
   maxSpawnDelay: 2
   spawnStartPoint: {fileID: 444821984}
@@ -1831,7 +1824,6 @@ MonoBehaviour:
   maxSpawnDelay: 3
   spawnStartPoint: {fileID: 1519852101}
   emptyObject: {fileID: 902932140}
-  posX: 0
   minPosX: -15
   maxPosX: -3
 --- !u!1 &1630272245

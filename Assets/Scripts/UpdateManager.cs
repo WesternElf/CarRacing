@@ -1,31 +1,35 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
 namespace Scripts
 {
-    public class UpdateManager
+    public class UpdateManager : MonoBehaviour
     {
-        public delegate void UpdateMethodHandler();
-        public  event UpdateMethodHandler OnUpdateMethod;
+        public event Action OnUpdateEvent;
 
         private static UpdateManager instance;
-    
-        public static UpdateManager Instance => instance;
 
-        private void Awake()
+        public static UpdateManager Instance
         {
-            instance = this;
-        }
-
-        public void Update()
-        {
-            if (OnUpdateMethod!=null)
+            get
             {
-                OnUpdateMethod();
-            }
+                if (instance == null)
+                {
+                    instance = FindObjectOfType<UpdateManager>();
+                }
 
+                if (instance == null)
+                {
+                    instance = new GameObject("UpdateManager", typeof(UpdateManager)).GetComponent<UpdateManager>();
+                }
+
+                return instance;
+            }
         }
 
+        private void Update()
+        {
+            OnUpdateEvent?.Invoke();
+        }
     }
 }

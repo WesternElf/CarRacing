@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Extensions;
 using Scripts.Interfaces;
 using UnityEngine;
 
@@ -23,6 +24,7 @@ namespace SpawnFeatures
 
         private void Start()
         {
+            gameObject.RemoveCloneFromName();
             StartCoroutine(MoveSpawnObject());
         }
 

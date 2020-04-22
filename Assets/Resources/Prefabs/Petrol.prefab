@@ -330,7 +330,7 @@ GameObject:
   - component: {fileID: 843347988165254839}
   m_Layer: 0
   m_Name: Petrol
-  m_TagString: Build
+  m_TagString: Petrol
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

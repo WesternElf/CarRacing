@@ -10,7 +10,7 @@ namespace SpawnFeatures
         [SerializeField] private float speed;
         [SerializeField] private float hitPoints;
         [SerializeField] private GameObject player;
-        private float outPosZ = -20f;
+        private float outPosZ = -25f;
         public float HitPoints => hitPoints;
         
         private void OnValidate()

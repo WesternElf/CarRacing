@@ -5,9 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Build
-  - Border
-  - Right Car
-  - Car
+  - Petrol
   layers:
   - Default
   - TransparentFX

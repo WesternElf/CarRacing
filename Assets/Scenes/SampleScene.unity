@@ -137,7 +137,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &17637030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,7 +153,7 @@ MonoBehaviour:
   _minSpawnDelay: 0
   _maxSpawnDelay: 0
   SpawnStartPoint: {fileID: 0}
-  EmptyObject: {fileID: 0}
+  prefab: {fileID: 0}
 --- !u!4 &17637031
 Transform:
   m_ObjectHideFlags: 0
@@ -680,7 +680,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &376543651
 Transform:
   m_ObjectHideFlags: 0
@@ -711,7 +711,7 @@ MonoBehaviour:
   _minSpawnDelay: 0
   _maxSpawnDelay: 0
   SpawnStartPoint: {fileID: 0}
-  EmptyObject: {fileID: 0}
+  prefab: {fileID: 0}
   minPosX: 3
   maxPosX: 15
 --- !u!1 &444821982
@@ -730,7 +730,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &444821983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -746,7 +746,7 @@ MonoBehaviour:
   _minSpawnDelay: 0
   _maxSpawnDelay: 0
   SpawnStartPoint: {fileID: 0}
-  EmptyObject: {fileID: 0}
+  prefab: {fileID: 0}
 --- !u!4 &444821984
 Transform:
   m_ObjectHideFlags: 0
@@ -851,7 +851,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &526681367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -867,7 +867,7 @@ MonoBehaviour:
   _minSpawnDelay: 0
   _maxSpawnDelay: 0
   SpawnStartPoint: {fileID: 0}
-  EmptyObject: {fileID: 0}
+  prefab: {fileID: 0}
 --- !u!4 &526681368
 Transform:
   m_ObjectHideFlags: 0
@@ -1026,7 +1026,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &707215001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1042,7 +1042,7 @@ MonoBehaviour:
   _minSpawnDelay: 0
   _maxSpawnDelay: 0
   SpawnStartPoint: {fileID: 0}
-  EmptyObject: {fileID: 0}
+  prefab: {fileID: 0}
 --- !u!4 &707215002
 Transform:
   m_ObjectHideFlags: 0
@@ -1477,7 +1477,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1113907844}
   - component: {fileID: 1113907843}
-  - component: {fileID: 1113907845}
   m_Layer: 0
   m_Name: DividerSpawnPoint
   m_TagString: Untagged
@@ -1497,10 +1496,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc9d6cf8f6a310449b1e2f19b3ba0804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _minSpawnDelay: 0
-  _maxSpawnDelay: 0
-  SpawnStartPoint: {fileID: 0}
-  EmptyObject: {fileID: 0}
+  _minSpawnDelay: 7
+  _maxSpawnDelay: 10
+  SpawnStartPoint: {fileID: 1113907844}
+  prefab: {fileID: 417814640879446699, guid: d7661fe086cb2d749b9866cf13202686, type: 3}
 --- !u!4 &1113907844
 Transform:
   m_ObjectHideFlags: 0
@@ -1516,79 +1515,6 @@ Transform:
   m_Father: {fileID: 981756804}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &1113907845
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1113907842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0269bceb56b17e845b13789478777dd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _minSpawnDelay: 1
-  _maxSpawnDelay: 1
-  SpawnStartPoint: {fileID: 345414971}
-  EmptyObject: {fileID: 1645872693}
-  pooledOblects: []
-  objectToPool:
-  - {fileID: 5063609695569942599, guid: 33be47e79ec563241b7b34541ba4deb1, type: 3}
-  amountToPool: 10
---- !u!1 &1215747806
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1215747808}
-  - component: {fileID: 1215747807}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1215747807
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1215747806}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0269bceb56b17e845b13789478777dd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _minSpawnDelay: 3
-  _maxSpawnDelay: 3
-  SpawnStartPoint: {fileID: 1215747808}
-  EmptyObject: {fileID: 1645872693}
-  pooledOblects: []
-  objectToPool:
-  - {fileID: 186076, guid: 308f334661b063443a97e209bfda2051, type: 3}
-  - {fileID: 119782, guid: f186dc3523e665d4388ace66c75e37bf, type: 3}
-  - {fileID: 137380, guid: 8f01b56008e992846988ae7018fd938b, type: 3}
-  amountToPool: 30
---- !u!4 &1215747808
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1215747806}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.29, y: 0.9017658, z: 11.4}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 12
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1240856959
 GameObject:
   m_ObjectHideFlags: 0
@@ -1890,7 +1816,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1519852101
 Transform:
   m_ObjectHideFlags: 0
@@ -1921,7 +1847,7 @@ MonoBehaviour:
   _minSpawnDelay: 0
   _maxSpawnDelay: 0
   SpawnStartPoint: {fileID: 0}
-  EmptyObject: {fileID: 0}
+  prefab: {fileID: 0}
   minPosX: -15
   maxPosX: -3
 --- !u!1 &1630272245
@@ -2000,7 +1926,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1698815719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2016,7 +1942,7 @@ MonoBehaviour:
   _minSpawnDelay: 0
   _maxSpawnDelay: 0
   SpawnStartPoint: {fileID: 0}
-  EmptyObject: {fileID: 0}
+  prefab: {fileID: 0}
 --- !u!4 &1698815720
 Transform:
   m_ObjectHideFlags: 0

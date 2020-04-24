@@ -1,42 +1,73 @@
 ﻿using System.Collections.Generic;
-using SpawnFeatures;
+using Assets.Scripts.ObjectPooling;
 using UnityEngine;
 
-public class ObjectPooler : SpawnPoint
+public class ObjectPooler
 {
-    private static ObjectPooler _instance;
-    public static ObjectPooler Instance => _instance;
-    public List<GameObject> pooledOblects;
-    public GameObject[] objectToPool;
-    public int amountToPool;
+    private GameObject _prefab;
+    private Transform _objectsParent;
+    private List<GameObject> _cachedObjects;
 
-    private void Awake()
+    public ObjectPooler(GameObject prefab, int initialAmount)
     {
-        _instance = this;
-    }
+        _prefab = prefab;
 
-    private void Start()
-    {
-        pooledOblects = new List<GameObject>();
-        for (int i = 0; i < amountToPool; i++)
+        if (_prefab.GetComponent<PoolableObject>() == null)
         {
-            GameObject obj = (GameObject) Instantiate(objectToPool[Random.Range(0, objectToPool.Length)], GetPositionForNewObject(), SpawnStartPoint.rotation, EmptyObject.transform);
-            obj.SetActive(false);
-            pooledOblects.Add(obj);
+            _prefab.AddComponent<PoolableObject>();
         }
-        spawningCoroutine = StartCoroutine(StartSpawn());
+
+        _cachedObjects = new List<GameObject>(initialAmount);
+        _objectsParent = new GameObject($"[{prefab.name}Parent]").transform;
+        SpawnInitialObjects(initialAmount);
+
+        Object.DontDestroyOnLoad(_objectsParent.gameObject);
     }
 
-    public GameObject GetPoolObject()
+    private void SpawnInitialObjects(int initialAmount)
     {
-        for (int i = 0; i < pooledOblects.Count; i++)
+        for(int i = 0; i < initialAmount; i++)
         {
-            if (!pooledOblects[i].activeInHierarchy)
-            { 
-                return pooledOblects[Random.Range(0, pooledOblects.Count)];
+            CreateObject();
+        }
+    }
+
+    public void ReturnGameObject(GameObject gameObject) 
+    {
+        gameObject.transform.SetParent(_objectsParent);
+        gameObject.SetActive(false);
+    }
+
+    public GameObject GetObject()
+    {
+        GameObject objectFromPool = null;
+
+        for (int i = 0; i < _cachedObjects.Count; i++)
+        {
+            if (!_cachedObjects[i].activeInHierarchy)
+            {
+                objectFromPool = _cachedObjects[i];
+                break;
             }
         }
 
-        return null;
+        if(objectFromPool == null)
+        { 
+            objectFromPool = CreateObject();
+        }
+
+        objectFromPool.SetActive(true);
+        return objectFromPool;
+    }
+
+    private GameObject CreateObject()
+    {
+        var newObject = Object.Instantiate(_prefab, _objectsParent);
+        newObject.name = _prefab.name + _cachedObjects.Count;
+        var poolableObject = newObject.GetComponent<PoolableObject>();
+        poolableObject.SetPool(this);
+        newObject.SetActive(false);
+        _cachedObjects.Add(newObject);
+        return newObject;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Assets.Scripts.ObjectPooling;
 using Extensions;
 using Scripts.Interfaces;
 using UnityEngine;
@@ -25,14 +26,12 @@ namespace SpawnFeatures
         private void Start()
         {
             gameObject.RemoveCloneFromName();
-            
         }
 
         private void OnEnable()
         {
             StartCoroutine(MoveSpawnObject());
         }
-
 
         private IEnumerator MoveSpawnObject()
         {
@@ -53,7 +52,7 @@ namespace SpawnFeatures
             }
             else
             {
-                gameObject.SetActive(false);
+                gameObject.GetComponent<PoolableObject>().ReturnToPool();
             }
         }
     }

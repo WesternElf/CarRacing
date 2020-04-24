@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 417814640879446698}
   - component: {fileID: 417814640879446705}
   - component: {fileID: 417814640879446702}
+  - component: {fileID: -2975467990500026178}
   m_Layer: 0
   m_Name: Divider
   m_TagString: Untagged
@@ -126,3 +127,15 @@ MonoBehaviour:
   speed: 10
   hitPoints: 0
   player: {fileID: 2351827069578461349, guid: 14c936facecfbf647bb0510b2bfa1bf5, type: 3}
+--- !u!114 &-2975467990500026178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 417814640879446699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fe23f86cd7a6c54b8e6d1c87cdb998b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -25,15 +25,21 @@ namespace SpawnFeatures
         private void Start()
         {
             gameObject.RemoveCloneFromName();
+            
+        }
+
+        private void OnEnable()
+        {
             StartCoroutine(MoveSpawnObject());
         }
 
+
         private IEnumerator MoveSpawnObject()
         {
-            while (true)
+            while (gameObject.activeInHierarchy)
             {
-                Move();
-                yield return null;
+               Move();
+               yield return null;
             }
         }
        
@@ -47,7 +53,7 @@ namespace SpawnFeatures
             }
             else
             {
-                Destroy(gameObject);
+                gameObject.SetActive(false);
             }
         }
     }

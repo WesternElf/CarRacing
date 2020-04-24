@@ -6,44 +6,53 @@ namespace SpawnFeatures
 {
     public class SpawnPoint : MonoBehaviour
     {
-        [Header("Spawn objects list")] 
-        [SerializeField] private GameObject[] spawnObject;
+
         [Header("Spawn attributes")]
-        [SerializeField, Range(0.0f, 10.0f)] private int minSpawnDelay;
-        [SerializeField, Range(0.0f, 10.0f)] private int maxSpawnDelay;
-        [SerializeField, Tooltip("Place, where objects spawned")] private Transform spawnStartPoint;
-        [SerializeField] private GameObject emptyObject;
+        [SerializeField, Range(0.0f, 10.0f)] private int _minSpawnDelay;
+        [SerializeField, Range(0.0f, 10.0f)] private int _maxSpawnDelay;
+        [SerializeField, Tooltip("Place, where objects spawned")] protected Transform SpawnStartPoint;
+        [SerializeField] protected GameObject EmptyObject;
 
-        private Coroutine spawningCoroutine;
+        protected Coroutine spawningCoroutine;
         
-        private void Start()
-        {
-            spawningCoroutine = StartCoroutine(StartSpawn());
-        }
 
-        private IEnumerator StartSpawn()
+
+        protected IEnumerator StartSpawn()
         {
             while (true)
             {
-                SpawnRandomObject();
-                yield return new WaitForSeconds(Random.Range(minSpawnDelay, maxSpawnDelay));
+                
+                SpawnObject();
+                yield return new WaitForSeconds(Random.Range(_minSpawnDelay, _maxSpawnDelay));
             }
         }
         
-        private void SpawnRandomObject()
+        //private void SpawnRandomObject()
+        //{
+        //    Instantiate(GetRandomObject(), GetPositionForNewObject(), spawnStartPoint.rotation, emptyObject.transform);
+
+        //}
+
+        private void SpawnObject()
         {
-            Instantiate(GetRandomObject(), GetPositionForNewObject(), spawnStartPoint.rotation, emptyObject.transform);
+            Debug.Log("Pool");
+            GameObject poolObject = ObjectPooler.Instance.GetPoolObject();
+            print(poolObject.name);
+            if (poolObject != null)
+            {
+                poolObject.SetActive(true);
+            }
         }
 
         protected virtual Vector3 GetPositionForNewObject()
         {
-            return spawnStartPoint.position;
+            return SpawnStartPoint.position;
         }
 
-        private GameObject GetRandomObject()
-        {
-            return spawnObject[Random.Range(0, spawnObject.Length)];
-        }
+        //private GameObject GetRandomObject()
+        //{
+        //    return spawnObject[Random.Range(0, spawnObject.Length)];
+        //}
 
         private void OnDestroy()
         {

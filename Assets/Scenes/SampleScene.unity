@@ -150,15 +150,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc9d6cf8f6a310449b1e2f19b3ba0804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnObject:
-  - {fileID: 198648, guid: 298fe3c26d3cb144faebe3dc048a26a8, type: 3}
-  - {fileID: 188570, guid: 410dd8f6082a58c419287fce7007a783, type: 3}
-  - {fileID: 145902, guid: 39b5ad9fd45e9074fa1a30bcd97fa639, type: 3}
-  - {fileID: 112746, guid: 7349374439187ba46bd7b62ff2227bf2, type: 3}
-  minSpawnDelay: 1
-  maxSpawnDelay: 2
-  spawnStartPoint: {fileID: 17637031}
-  emptyObject: {fileID: 511636859}
+  _minSpawnDelay: 0
+  _maxSpawnDelay: 0
+  SpawnStartPoint: {fileID: 0}
+  EmptyObject: {fileID: 0}
 --- !u!4 &17637031
 Transform:
   m_ObjectHideFlags: 0
@@ -713,14 +708,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfbd44cfe09d928409b9b648e517416b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnObject:
-  - {fileID: 186076, guid: 308f334661b063443a97e209bfda2051, type: 3}
-  - {fileID: 119782, guid: f186dc3523e665d4388ace66c75e37bf, type: 3}
-  - {fileID: 137380, guid: 8f01b56008e992846988ae7018fd938b, type: 3}
-  minSpawnDelay: 2
-  maxSpawnDelay: 3
-  spawnStartPoint: {fileID: 376543651}
-  emptyObject: {fileID: 902932140}
+  _minSpawnDelay: 0
+  _maxSpawnDelay: 0
+  SpawnStartPoint: {fileID: 0}
+  EmptyObject: {fileID: 0}
   minPosX: 3
   maxPosX: 15
 --- !u!1 &444821982
@@ -752,15 +743,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc9d6cf8f6a310449b1e2f19b3ba0804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnObject:
-  - {fileID: 198648, guid: 298fe3c26d3cb144faebe3dc048a26a8, type: 3}
-  - {fileID: 188570, guid: 410dd8f6082a58c419287fce7007a783, type: 3}
-  - {fileID: 145902, guid: 39b5ad9fd45e9074fa1a30bcd97fa639, type: 3}
-  - {fileID: 112746, guid: 7349374439187ba46bd7b62ff2227bf2, type: 3}
-  minSpawnDelay: 1
-  maxSpawnDelay: 2
-  spawnStartPoint: {fileID: 444821984}
-  emptyObject: {fileID: 511636859}
+  _minSpawnDelay: 0
+  _maxSpawnDelay: 0
+  SpawnStartPoint: {fileID: 0}
+  EmptyObject: {fileID: 0}
 --- !u!4 &444821984
 Transform:
   m_ObjectHideFlags: 0
@@ -878,12 +864,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc9d6cf8f6a310449b1e2f19b3ba0804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnObject:
-  - {fileID: 6330832768871722284, guid: 0673abd183b753245895180dc208b081, type: 3}
-  minSpawnDelay: 1
-  maxSpawnDelay: 1
-  spawnStartPoint: {fileID: 526681368}
-  emptyObject: {fileID: 227250107}
+  _minSpawnDelay: 0
+  _maxSpawnDelay: 0
+  SpawnStartPoint: {fileID: 0}
+  EmptyObject: {fileID: 0}
 --- !u!4 &526681368
 Transform:
   m_ObjectHideFlags: 0
@@ -1055,12 +1039,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc9d6cf8f6a310449b1e2f19b3ba0804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnObject:
-  - {fileID: 6330832768871722284, guid: 0673abd183b753245895180dc208b081, type: 3}
-  minSpawnDelay: 1
-  maxSpawnDelay: 1
-  spawnStartPoint: {fileID: 707215002}
-  emptyObject: {fileID: 227250107}
+  _minSpawnDelay: 0
+  _maxSpawnDelay: 0
+  SpawnStartPoint: {fileID: 0}
+  EmptyObject: {fileID: 0}
 --- !u!4 &707215002
 Transform:
   m_ObjectHideFlags: 0
@@ -1495,6 +1477,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1113907844}
   - component: {fileID: 1113907843}
+  - component: {fileID: 1113907845}
   m_Layer: 0
   m_Name: DividerSpawnPoint
   m_TagString: Untagged
@@ -1509,17 +1492,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1113907842}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cc9d6cf8f6a310449b1e2f19b3ba0804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnObject:
-  - {fileID: 417814640879446699, guid: d7661fe086cb2d749b9866cf13202686, type: 3}
-  minSpawnDelay: 1
-  maxSpawnDelay: 1
-  spawnStartPoint: {fileID: 1113907844}
-  emptyObject: {fileID: 1630272245}
+  _minSpawnDelay: 0
+  _maxSpawnDelay: 0
+  SpawnStartPoint: {fileID: 0}
+  EmptyObject: {fileID: 0}
 --- !u!4 &1113907844
 Transform:
   m_ObjectHideFlags: 0
@@ -1535,6 +1516,79 @@ Transform:
   m_Father: {fileID: 981756804}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &1113907845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1113907842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0269bceb56b17e845b13789478777dd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _minSpawnDelay: 1
+  _maxSpawnDelay: 1
+  SpawnStartPoint: {fileID: 345414971}
+  EmptyObject: {fileID: 1645872693}
+  pooledOblects: []
+  objectToPool:
+  - {fileID: 5063609695569942599, guid: 33be47e79ec563241b7b34541ba4deb1, type: 3}
+  amountToPool: 10
+--- !u!1 &1215747806
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1215747808}
+  - component: {fileID: 1215747807}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1215747807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215747806}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0269bceb56b17e845b13789478777dd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _minSpawnDelay: 3
+  _maxSpawnDelay: 3
+  SpawnStartPoint: {fileID: 1215747808}
+  EmptyObject: {fileID: 1645872693}
+  pooledOblects: []
+  objectToPool:
+  - {fileID: 186076, guid: 308f334661b063443a97e209bfda2051, type: 3}
+  - {fileID: 119782, guid: f186dc3523e665d4388ace66c75e37bf, type: 3}
+  - {fileID: 137380, guid: 8f01b56008e992846988ae7018fd938b, type: 3}
+  amountToPool: 30
+--- !u!4 &1215747808
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215747806}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.29, y: 0.9017658, z: 11.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1240856959
 GameObject:
   m_ObjectHideFlags: 0
@@ -1864,14 +1918,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfbd44cfe09d928409b9b648e517416b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnObject:
-  - {fileID: 186076, guid: 308f334661b063443a97e209bfda2051, type: 3}
-  - {fileID: 137380, guid: 8f01b56008e992846988ae7018fd938b, type: 3}
-  - {fileID: 119782, guid: f186dc3523e665d4388ace66c75e37bf, type: 3}
-  minSpawnDelay: 1
-  maxSpawnDelay: 3
-  spawnStartPoint: {fileID: 1519852101}
-  emptyObject: {fileID: 902932140}
+  _minSpawnDelay: 0
+  _maxSpawnDelay: 0
+  SpawnStartPoint: {fileID: 0}
+  EmptyObject: {fileID: 0}
   minPosX: -15
   maxPosX: -3
 --- !u!1 &1630272245
@@ -1963,12 +2013,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc9d6cf8f6a310449b1e2f19b3ba0804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnObject:
-  - {fileID: 1842962378958009479, guid: ce66b18530641d544b2f472d642a692d, type: 3}
-  minSpawnDelay: 5
-  maxSpawnDelay: 5
-  spawnStartPoint: {fileID: 1698815720}
-  emptyObject: {fileID: 1645872693}
+  _minSpawnDelay: 0
+  _maxSpawnDelay: 0
+  SpawnStartPoint: {fileID: 0}
+  EmptyObject: {fileID: 0}
 --- !u!4 &1698815720
 Transform:
   m_ObjectHideFlags: 0

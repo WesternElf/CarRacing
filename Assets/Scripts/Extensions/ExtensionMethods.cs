@@ -9,6 +9,4 @@ namespace Extensions
             gameObject.name = gameObject.name.Replace("(Clone)", string.Empty);
         }
     }
-
-
 }

@@ -5,40 +5,33 @@ using UnityEngine;
 
 namespace PlayerScripts
 {
-    public class LoadSaveData : MonoBehaviour
+    public static class LoadSaveData
     {
         private static readonly fsSerializer _serializer = new fsSerializer();
 
-        readonly PlayerData _playerData = new PlayerData(12f, 100f, Color.red);
-
-
-        private void Awake()
-        {
-            LoadPlayer();
-        }
-
-
         [ContextMenu("Save")]
-        public string SavePlayer()
+        public static void SavePlayer(PlayerData playerData)
         {
-            var json = Serialize(typeof(PlayerData), _playerData);
+            var json = Serialize(typeof(PlayerData), playerData);
             File.WriteAllText(GetFilePath(), json);
-            return json;
         }
 
-
-        public void LoadPlayer()
+        public static PlayerData LoadPlayer()
         {
-            var data = Deserialize(typeof(PlayerData), SavePlayer()) as PlayerData;
-            PlayerData.NewSpeedValue = data.Speed;
-            PlayerData.NewFuelValue = data.FuelCount;
-            PlayerData.NewMaterial = data.CarMaterial;
+            var pathToSaveFile = GetFilePath();
+
+            if (!File.Exists(pathToSaveFile))
+            {
+                return null;
+            }
+
+            var fileContent = File.ReadAllText(pathToSaveFile);
+            return Deserialize(typeof(PlayerData), fileContent) as PlayerData;
         }
 
-
-        private string GetFilePath()
+        private static string GetFilePath()
         {
-            var path = Application.dataPath + "/Savings.json";
+            var path = Application.persistentDataPath + "/Savings.json";
             return path;
         }
 
@@ -57,7 +50,6 @@ namespace PlayerScripts
 
             return deserialized;
         }
-        
     }
 
 }

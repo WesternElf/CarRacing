@@ -9,12 +9,11 @@ namespace PlayerScripts
     {
         private const string PetrolTag = "Petrol";
 
-        private float _speed;
-        private float _fuelCount;
         private Material _carMaterial;
         [SerializeField] private Image _fuelImage;
         private float damping = 0.3f;
         private Rigidbody _rigidbody;
+        [SerializeField] private PlayerData playerData;
 
         private void Start()
         {
@@ -25,21 +24,21 @@ namespace PlayerScripts
             UpdateManager.Instance.OnUpdateEvent += Movement;
         }
 
-
-        private void OnDestroy()
-        {
-            UpdateManager.Instance.OnUpdateEvent -= Movement;
-        }
-
-
         private void InitializeValues()
         {
-            _speed = PlayerData.NewSpeedValue;
-            _fuelCount = PlayerData.NewFuelValue;
-            _carMaterial.color = PlayerData.NewMaterial;
-            print("Speed = " + _speed + " Fuel = " + _fuelCount + " Color " + _carMaterial.color);
-        }
+            var loadedData = LoadSaveData.LoadPlayer();
 
+            if(loadedData != null)
+            {
+                playerData = loadedData;
+            }
+            else
+            {
+                playerData = new PlayerData();
+            }
+
+            _carMaterial.color = playerData.CarMaterial;
+        }
 
         private void Movement()
         {
@@ -49,7 +48,7 @@ namespace PlayerScripts
             var moving = horizontal + vertical;
             moving.Normalize();
 
-            moving *= _speed;
+            moving *= playerData.Speed;
 
             if (moving.magnitude > 0f)
             {
@@ -63,14 +62,14 @@ namespace PlayerScripts
 
         private IEnumerator FuelChanging()
         {
-            while (_fuelCount > 0f)
+            while (playerData.FuelCount > 0f)
             {
                 yield return new WaitForSeconds(1f);
-                _fuelCount -= 1f;
-                _fuelImage.fillAmount = _fuelCount / 100f;
+                playerData.FuelCount -= 1f;
+                _fuelImage.fillAmount = playerData.FuelCount / 100f;
             }
         }
-        
+      
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag(PetrolTag))
@@ -85,15 +84,20 @@ namespace PlayerScripts
             }
         }
 
-
         private void TakeFuel()
         {
-            _fuelCount = Mathf.Clamp(_fuelCount + 20f, 0f, 100f);
+            playerData.FuelCount = Mathf.Clamp(playerData.FuelCount + 20f, 0f, 100f);
         }
 
         private void Die()
         {
             Debug.Log("You died!");
+        }
+
+        private void OnDestroy()
+        {
+            LoadSaveData.SavePlayer(playerData);
+            UpdateManager.Instance.OnUpdateEvent -= Movement;
         }
     }
 }

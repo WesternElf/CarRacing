@@ -1,22 +1,14 @@
-﻿using UnityEngine;
+﻿using FullSerializer;
+using UnityEngine;
 
 namespace PlayerScripts
 {
+    [System.Serializable]
     public class PlayerData 
     {
-        public float Speed;
-        public float FuelCount;
-        public Color CarMaterial;
-
-        public static float NewSpeedValue = 0;
-        public static float NewFuelValue = 0;
-        public static Color NewMaterial;
-
-        public PlayerData(float speed, float fuelCount, Color color)
-        {
-            this.FuelCount = fuelCount;
-            this.Speed = speed;
-            this.CarMaterial = color;
-        }
+        //[fsProperty("S")] 
+        public float Speed = 12f;
+        public float FuelCount = 100f;
+        public Color CarMaterial = Color.red;
     }
 }

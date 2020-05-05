@@ -1818,7 +1818,7 @@ GameObject:
   - component: {fileID: 1539231283}
   - component: {fileID: 1539231282}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: GlobalObjecSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1837,12 +1837,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objectSpawner:
-  - _points:
+  - objectsCount: 3
+    _points:
     - {fileID: 1876617580}
     - {fileID: 1876617580}
     _possibleObjects:
     - {fileID: 112746, guid: 7349374439187ba46bd7b62ff2227bf2, type: 3}
-    objectsCount: 3
 --- !u!4 &1539231283
 Transform:
   m_ObjectHideFlags: 0

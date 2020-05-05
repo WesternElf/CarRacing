@@ -7,28 +7,27 @@ namespace Assets.Scripts
     {
         [SerializeField] private ObjectSpawner[] _objectSpawner;
 
-
-        void Start()
+        private void Start()
         {
-            _objectSpawner = new ObjectSpawner[2];
-            foreach (var objects in _objectSpawner)
+            for(int i = 0; i < _objectSpawner.Length; i++)
             {
-                objects.GetPool();
+                _objectSpawner[i].Initialize();
             }
-            StartCoroutine(Spawner());
 
+            StartCoroutine(Spawner());
         }
 
         private IEnumerator Spawner()
         {
+            var delay = new WaitForSeconds(2f);
+
             while (true)
             {
                 foreach (var objects in _objectSpawner)
                 {
                     objects.Spawn();
                 }
-                yield return new WaitForSeconds(2);
-
+                yield return delay;
             }
         }
     }

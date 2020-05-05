@@ -25,8 +25,6 @@ public class ObjectPooler
         Object.DontDestroyOnLoad(_objectsParent.gameObject);
     }
 
-
-
     private void SpawnInitialObjects(int initialAmount)
     {
         for(int i = 0; i < initialAmount; i++)

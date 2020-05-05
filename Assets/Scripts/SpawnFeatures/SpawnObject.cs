@@ -5,8 +5,7 @@ using Scripts.Interfaces;
 using UnityEngine;
 
 namespace SpawnFeatures
-{
-    [RequireComponent(typeof(Rigidbody))]
+{ 
     public class SpawnObject : MonoBehaviour, IDestructable
     {
         [SerializeField] private float speed;

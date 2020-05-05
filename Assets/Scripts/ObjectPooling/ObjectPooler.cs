@@ -12,6 +12,7 @@ public class ObjectPooler
     {
         _prefab = prefab;
 
+
         if (_prefab.GetComponent<PoolableObject>() == null)
         {
             _prefab.AddComponent<PoolableObject>();
@@ -20,9 +21,11 @@ public class ObjectPooler
         _cachedObjects = new List<GameObject>(initialAmount);
         _objectsParent = new GameObject($"[{prefab.name}Parent]").transform;
         SpawnInitialObjects(initialAmount);
-
+        Debug.Log("Calling ctor from ObjectPooler class with object: " + prefab.name + " with count: " + initialAmount);
         Object.DontDestroyOnLoad(_objectsParent.gameObject);
     }
+
+
 
     private void SpawnInitialObjects(int initialAmount)
     {

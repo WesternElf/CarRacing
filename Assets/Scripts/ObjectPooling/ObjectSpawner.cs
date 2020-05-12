@@ -13,7 +13,8 @@ namespace Assets.Scripts
         [SerializeField] private List<GameObject> _possibleObjects;
 
         private ObjectPooler[] _pools;
-
+        private Transform _randomPoint;
+        
         public void Initialize()
         {
             _pools = new ObjectPooler[_possibleObjects.Count];
@@ -30,7 +31,7 @@ namespace Assets.Scripts
             SpawnObject(randomPool);
         }
 
-        public void SpawnObject(ObjectPooler pool)
+        private void SpawnObject(ObjectPooler pool)
         {
             var pooledObject = pool.GetObject();
             var randomPoint = GetRandomPoint();
@@ -40,7 +41,19 @@ namespace Assets.Scripts
 
         private Transform GetRandomPoint()
         {
-            return _points[Random.Range(0, _points.Count - 1)];
+            var newPoint = _points[Random.Range(0, _points.Count)];
+            
+            //Debug.Log("Old point: " + _randomPoint);
+            //if (_randomPoint != newPoint)
+            //{
+            //    _randomPoint = newPoint;
+            //}
+            //else
+            //{
+            //    return GetRandomPoint();
+            //}
+            //Debug.Log("New point: " + _randomPoint);
+            return newPoint;
         }
     }
 }

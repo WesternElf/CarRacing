@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using ScriptableObjects;
 using Scripts.Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,14 +15,18 @@ namespace PlayerScripts
         private float damping = 0.3f;
         private Rigidbody _rigidbody;
         [SerializeField] private PlayerData playerData;
+        [SerializeField] private PlayerSkin playerSkin;
 
         private void Start()
         {
             _carMaterial = gameObject.GetComponentInChildren<MeshRenderer>().material;
             _rigidbody = GetComponent<Rigidbody>();
             InitializeValues();
+            GetSkin("NormalCar");
             StartCoroutine(FuelChanging());
             UpdateManager.Instance.OnUpdateEvent += Movement;
+            UpdateManager.Instance.OnUpdateEvent += ChangeSkin;
+            //playerSkin.AssignAttributes(mesh, playerData.Speed, playerData.FuelCount);
         }
 
         private void InitializeValues()
@@ -48,6 +53,7 @@ namespace PlayerScripts
             var moving = horizontal + vertical;
             moving.Normalize();
 
+            
             moving *= playerData.Speed;
 
             if (moving.magnitude > 0f)
@@ -58,6 +64,38 @@ namespace PlayerScripts
             {
                 _rigidbody.velocity *= damping;
             }
+        }
+
+        private void ChangeSkin()
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                GetSkin("NormalCar");
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                GetSkin("Bus");
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                GetSkin("PoliceCar");
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha4))
+            {
+                GetSkin("TaxiCar");
+            }
+        }
+
+        private void GetSkin(string skinName)
+        {
+            playerSkin = Resources.Load<PlayerSkin>($"CarSkins/{skinName}");
+            playerData.Speed = playerSkin.AssignSpeed(playerData.Speed);
+            playerData.FuelCount = playerSkin.AssingnFuelCount(playerData.FuelCount);
+            _carMaterial.color = playerSkin.AssignColor(_carMaterial.color);
+
+            print(_carMaterial.color);
+            print(playerData.Speed + " " + playerData.FuelCount);
+        
         }
 
         private IEnumerator FuelChanging()
@@ -98,6 +136,7 @@ namespace PlayerScripts
         {
             LoadSaveData.SavePlayer(playerData);
             UpdateManager.Instance.OnUpdateEvent -= Movement;
+            UpdateManager.Instance.OnUpdateEvent -= ChangeSkin;
         }
     }
 }

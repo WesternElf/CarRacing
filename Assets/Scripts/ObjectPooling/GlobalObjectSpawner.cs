@@ -19,7 +19,7 @@ namespace Assets.Scripts
 
         private IEnumerator Spawner()
         {
-            var delay = new WaitForSeconds(2f);
+            var delay = new WaitForSeconds(1f);
 
             while (true)
             {

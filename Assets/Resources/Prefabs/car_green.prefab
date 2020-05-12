@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 2337836}
   - component: {fileID: -7832552807736423163}
   - component: {fileID: 3447239187492471292}
+  - component: {fileID: -2553496066077681198}
   m_Layer: 0
   m_Name: car_green
   m_TagString: Car
@@ -196,6 +197,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.0382595, y: 0.019102499, z: 0.016342886}
   m_Center: {x: 0.0007265489, y: 0, z: 0.011227842}
+--- !u!114 &-2553496066077681198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fe23f86cd7a6c54b8e6d1c87cdb998b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &135698
 GameObject:
   m_ObjectHideFlags: 0

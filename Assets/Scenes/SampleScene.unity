@@ -1528,6 +1528,12 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1428336902 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2351827068999484965, guid: 14c936facecfbf647bb0510b2bfa1bf5,
+    type: 3}
+  m_PrefabInstance: {fileID: 2351827068921303542}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1519852099
 GameObject:
   m_ObjectHideFlags: 0
@@ -1598,22 +1604,26 @@ MonoBehaviour:
     - {fileID: 188570, guid: 410dd8f6082a58c419287fce7007a783, type: 3}
     - {fileID: 145902, guid: 39b5ad9fd45e9074fa1a30bcd97fa639, type: 3}
     - {fileID: 112746, guid: 7349374439187ba46bd7b62ff2227bf2, type: 3}
+    delay: 0
   - objectsCount: 10
     _points:
     - {fileID: 1113907844}
     _possibleObjects:
     - {fileID: 417814640879446699, guid: d7661fe086cb2d749b9866cf13202686, type: 3}
+    delay: 0
   - objectsCount: 10
     _points:
     - {fileID: 707215002}
     - {fileID: 526681368}
     _possibleObjects:
     - {fileID: 6330832768871722284, guid: 0673abd183b753245895180dc208b081, type: 3}
+    delay: 0
   - objectsCount: 5
     _points:
     - {fileID: 1698815720}
     _possibleObjects:
     - {fileID: 1842962378958009479, guid: ce66b18530641d544b2f472d642a692d, type: 3}
+    delay: 0
   - objectsCount: 5
     _points:
     - {fileID: 1519852101}
@@ -1622,6 +1632,7 @@ MonoBehaviour:
     - {fileID: 186076, guid: 308f334661b063443a97e209bfda2051, type: 3}
     - {fileID: 119782, guid: f186dc3523e665d4388ace66c75e37bf, type: 3}
     - {fileID: 137380, guid: 8f01b56008e992846988ae7018fd938b, type: 3}
+    delay: 0
 --- !u!4 &1539231283
 Transform:
   m_ObjectHideFlags: 0
@@ -2022,7 +2033,7 @@ PrefabInstance:
     - target: {fileID: 2351827068999484965, guid: 14c936facecfbf647bb0510b2bfa1bf5,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2351827069000517127, guid: 14c936facecfbf647bb0510b2bfa1bf5,
         type: 3}
@@ -2099,6 +2110,11 @@ PrefabInstance:
       propertyPath: _fuelImage
       value: 
       objectReference: {fileID: 851051131}
+    - target: {fileID: 2351827069578461346, guid: 14c936facecfbf647bb0510b2bfa1bf5,
+        type: 3}
+      propertyPath: mesh
+      value: 
+      objectReference: {fileID: 1428336902}
     - target: {fileID: 2351827069578461349, guid: 14c936facecfbf647bb0510b2bfa1bf5,
         type: 3}
       propertyPath: m_Name

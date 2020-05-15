@@ -57,7 +57,7 @@ public class ObjectPooler
             objectFromPool = CreateObject();
         }
 
-        objectFromPool.SetActive(true);
+       
         return objectFromPool;
     }
 

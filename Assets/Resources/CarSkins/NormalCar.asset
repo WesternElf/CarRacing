@@ -16,3 +16,4 @@ MonoBehaviour:
   _color: {r: 0.3207547, g: 0.04690281, b: 0.04690281, a: 0}
   _speed: 10
   _fuelCount: 100
+  _mesh: {fileID: 9115284025850184816, guid: f9e40f340c391264cb4a3323b630c1c4, type: 3}

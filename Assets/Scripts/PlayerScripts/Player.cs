@@ -16,6 +16,7 @@ namespace PlayerScripts
         private Rigidbody _rigidbody;
         [SerializeField] private PlayerData playerData;
         [SerializeField] private PlayerSkin playerSkin;
+        [SerializeField] private GameObject mesh;
 
         private void Start()
         {
@@ -53,7 +54,6 @@ namespace PlayerScripts
             var moving = horizontal + vertical;
             moving.Normalize();
 
-            
             moving *= playerData.Speed;
 
             if (moving.magnitude > 0f)
@@ -89,13 +89,16 @@ namespace PlayerScripts
         private void GetSkin(string skinName)
         {
             playerSkin = Resources.Load<PlayerSkin>($"CarSkins/{skinName}");
-            playerData.Speed = playerSkin.AssignSpeed(playerData.Speed);
-            playerData.FuelCount = playerSkin.AssingnFuelCount(playerData.FuelCount);
-            _carMaterial.color = playerSkin.AssignColor(_carMaterial.color);
+            playerData.Speed = playerSkin.Speed;
+            playerData.FuelCount = playerSkin.FuelCount;
+            _carMaterial.color = playerSkin.Color;
 
-            print(_carMaterial.color);
-            print(playerData.Speed + " " + playerData.FuelCount);
-        
+            if (mesh!=null)
+            {
+                Destroy(mesh);
+            }
+            mesh = Instantiate(playerSkin.Mesh, transform.position, transform.rotation);
+            mesh.transform.parent = gameObject.transform;
         }
 
         private IEnumerator FuelChanging()

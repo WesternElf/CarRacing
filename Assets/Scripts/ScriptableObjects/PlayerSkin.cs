@@ -9,27 +9,14 @@ namespace ScriptableObjects
         [SerializeField] private Color _color;
         [SerializeField] private float _speed;
         [SerializeField] private float _fuelCount;
+        [SerializeField] private GameObject _mesh;
 
         public string Name => _name;
         public float FuelCount => _fuelCount;
+        public Color Color => _color;
+        public float Speed => _speed;
+        public GameObject Mesh => _mesh;
 
-        public Color AssignColor(Color color)
-        {
-            color = _color;
-            return color;
-        }
-
-        public float AssignSpeed(float speed)
-        {
-            speed = _speed;
-            return speed;
-        }
-
-        public float AssingnFuelCount(float fuelCount)
-        {
-            fuelCount = _fuelCount;
-            return fuelCount;
-        }
 
     }
 }

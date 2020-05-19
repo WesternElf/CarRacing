@@ -11,23 +11,23 @@ namespace PlayerScripts
         private const string PetrolTag = "Petrol";
 
         private Material _carMaterial;
-        [SerializeField] private Image _fuelImage;
         private float damping = 0.3f;
         private Rigidbody _rigidbody;
+        [SerializeField] private Image _fuelImage;
         [SerializeField] private PlayerData playerData;
         [SerializeField] private PlayerSkin playerSkin;
-        [SerializeField] private GameObject mesh;
 
         private void Start()
         {
             _carMaterial = gameObject.GetComponentInChildren<MeshRenderer>().material;
             _rigidbody = GetComponent<Rigidbody>();
+
             InitializeValues();
-            GetSkin("NormalCar");
+            //GetSkin("NormalCar");
             StartCoroutine(FuelChanging());
+
             UpdateManager.Instance.OnUpdateEvent += Movement;
-            UpdateManager.Instance.OnUpdateEvent += ChangeSkin;
-            //playerSkin.AssignAttributes(mesh, playerData.Speed, playerData.FuelCount);
+            //UpdateManager.Instance.OnUpdateEvent += ChangeSkin;
         }
 
         private void InitializeValues()
@@ -44,6 +44,7 @@ namespace PlayerScripts
             }
 
             _carMaterial.color = playerData.CarMaterial;
+
         }
 
         private void Movement()
@@ -66,40 +67,41 @@ namespace PlayerScripts
             }
         }
 
-        private void ChangeSkin()
-        {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                GetSkin("NormalCar");
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                GetSkin("Bus");
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                GetSkin("PoliceCar");
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha4))
-            {
-                GetSkin("TaxiCar");
-            }
-        }
+        //private void ChangeSkin()
+        //{
+        //    if (Input.GetKeyDown(KeyCode.Alpha1))
+        //    {
+        //        GetSkin("NormalCar");
+        //    }
+        //    else if (Input.GetKeyDown(KeyCode.Alpha2))
+        //    {
+        //        GetSkin("Bus");
+        //    }
+        //    else if (Input.GetKeyDown(KeyCode.Alpha3))
+        //    {
+        //        GetSkin("PoliceCar");
+        //    }
+        //    else if (Input.GetKeyDown(KeyCode.Alpha4))
+        //    {
+        //        GetSkin("TaxiCar");
+        //    }
+        //}
 
-        private void GetSkin(string skinName)
-        {
-            playerSkin = Resources.Load<PlayerSkin>($"CarSkins/{skinName}");
-            playerData.Speed = playerSkin.Speed;
-            playerData.FuelCount = playerSkin.FuelCount;
-            _carMaterial.color = playerSkin.Color;
+        //private void GetSkin()
+        //{
+        //    playerSkin = playerData.CarSkin;
+        //    playerData.Speed = playerSkin.Speed;
+        //    playerData.FuelCount = playerSkin.FuelCount;
+        //    _carMaterial.color = playerSkin.Color;
 
-            if (mesh!=null)
-            {
-                Destroy(mesh);
-            }
-            mesh = Instantiate(playerSkin.Mesh, transform.position, transform.rotation);
-            mesh.transform.parent = gameObject.transform;
-        }
+        //    if (Mesh != null)
+        //    {
+        //        Destroy(Mesh);
+        //    }
+        //    Mesh = Instantiate(playerSkin.Mesh, transform.position, transform.rotation);
+        //    Mesh.transform.parent = gameObject.transform;
+
+        //}
 
         private IEnumerator FuelChanging()
         {
@@ -139,7 +141,7 @@ namespace PlayerScripts
         {
             LoadSaveData.SavePlayer(playerData);
             UpdateManager.Instance.OnUpdateEvent -= Movement;
-            UpdateManager.Instance.OnUpdateEvent -= ChangeSkin;
+            //UpdateManager.Instance.OnUpdateEvent -= ChangeSkin;
         }
     }
 }

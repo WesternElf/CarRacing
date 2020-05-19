@@ -21,7 +21,6 @@ public class ObjectPooler
         _cachedObjects = new List<GameObject>(initialAmount);
         _objectsParent = new GameObject($"[{prefab.name}Parent]").transform;
         SpawnInitialObjects(initialAmount);
-        Debug.Log("Calling ctor from ObjectPooler class with object: " + prefab.name + " with count: " + initialAmount);
         Object.DontDestroyOnLoad(_objectsParent.gameObject);
     }
 

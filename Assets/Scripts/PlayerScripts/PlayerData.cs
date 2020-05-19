@@ -1,4 +1,5 @@
 ﻿using FullSerializer;
+using ScriptableObjects;
 using UnityEngine;
 
 namespace PlayerScripts
@@ -10,5 +11,6 @@ namespace PlayerScripts
         public float Speed = 12f;
         public float FuelCount = 100f;
         public Color CarMaterial = Color.red;
+        //public PlayerSkin PlayerSkin;
     }
 }

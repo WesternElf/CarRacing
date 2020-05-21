@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 767a864bb08e9ee4082ffc5b3ee53117, type: 3}
   m_Name: NormalCar
   m_EditorClassIdentifier: 
-  _name: Normal Car
+  _name: NormalCar
   _color: {r: 0.3207547, g: 0.04690281, b: 0.04690281, a: 0}
   _speed: 10
   _fuelCount: 100

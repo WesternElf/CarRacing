@@ -1,34 +1,37 @@
 ﻿using PlayerScripts;
 using ScriptableObjects;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StartDisplay : MonoBehaviour
 {
-    private PlayerSkin playerSkin;
-    private PlayerData playerData;
+    [SerializeField] private Button newButton;
+    [SerializeField] private RectTransform buttonPanel;
 
     public PlayerData PlayerData { get; set; }
 
     private void Awake()
     {
         GameController.Instance.State = GameState.Pause;
-       
+
+        var playerSkins = Resources.LoadAll<PlayerSkin>("CarSkins");
+
+        Debug.Log("Objects: " + playerSkins.Length);
+        for (int i = 0; i < playerSkins.Length; i++)
+        {
+            InstantiateButton(playerSkins[i]);
+            
+            Debug.Log("Succes");
+        }
+        Debug.Log("Instantiate succesfully");
     }
 
-    public void ChooseCar(PlayerSkin skin)                                          //метод для вибору скіна через он клік івент
+    private void InstantiateButton(PlayerSkin skin)
     {
-        playerSkin = Resources.Load<PlayerSkin>($"CarSkins/{skin.name}");
-        Debug.Log(playerSkin.name + "  " + playerSkin.Speed);
-
-        PlayerData = new PlayerData();
-        PlayerData.Speed = playerSkin.Speed;
-        playerData.FuelCount = playerSkin.FuelCount;
-
-        GameController.Instance.State = GameState.Play;
-        gameObject.SetActive(false);
-        
+        var button = Instantiate(newButton, buttonPanel.transform.position, buttonPanel.transform.rotation) as Button;
+        var text = button.GetComponentInChildren<Text>();
+        text.text = skin.Name;
+        button.transform.SetParent(buttonPanel.transform);
     }
-
-
 
 }

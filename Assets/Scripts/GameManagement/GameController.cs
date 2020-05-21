@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using PlayerScripts;
+using ScriptableObjects;
 using UnityEngine;
 
     public enum GameState                                           //ігровий стан - пауза і гра
@@ -12,6 +14,7 @@ using UnityEngine;
     {
         private static GameController _instance;
         private GameState _state;
+        private Player player;
 
         public static GameController Instance                       //синглтон
         {

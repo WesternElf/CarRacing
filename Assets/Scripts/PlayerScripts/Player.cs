@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Data.SqlTypes;
 using ScriptableObjects;
 using Scripts.Interfaces;
 using UnityEngine;
@@ -7,47 +6,57 @@ using UnityEngine.UI;
 
 namespace PlayerScripts
 {
+    [RequireComponent(typeof(Rigidbody))]
     public class Player : MonoBehaviour
     {
         [SerializeField] private float _speed = 10f;
         [SerializeField] private float _fuelCount = 100f;
         [SerializeField] private GameObject _mesh;
-        private const string PetrolTag = "Petrol";
-        private Material _carMaterial;
+        [SerializeField] private GameObject _fuelImage;
+        [SerializeField] private PlayerData playerData;
+
         private float damping = 0.3f;
         private Rigidbody _rigidbody;
-        [SerializeField] private Image _fuelImage;
-        [SerializeField] private PlayerData playerData;
-        [SerializeField] private PlayerSkin playerSkin;
+        private Transform playerTransform;
 
-        private void Start()
+        public PlayerSkin newPlayerSkin;
+
+        private const string PetrolTag = "Petrol";
+
+        private void OnEnable()
         {
-            _carMaterial = gameObject.GetComponentInChildren<MeshRenderer>().material;
+            playerTransform = gameObject.GetComponentInChildren<Transform>();
             _rigidbody = GetComponent<Rigidbody>();
-            InitializeValues();
+            GetSkinData();
             StartCoroutine(FuelChanging());
-
             UpdateManager.Instance.OnUpdateEvent += Movement;
+            
         }
 
-        public void InitializeValues()
+        private void GetSkinData()
         {
-            var loadedData = LoadSaveData.LoadPlayer();
-
-            if(loadedData != null)
-            {
-                playerData = loadedData;
-            }
-            else
-            {
-                playerData = new PlayerData();
-            }
-
-            playerSkin = Resources.Load<PlayerSkin>($"CarSkins/{playerData.SkinName}");
-   
-            //_carMaterial.color = playerData.CarMaterial;
-
+            newPlayerSkin = ButtonSkin.NewSkin;
+            print("PlayerSkin name " + newPlayerSkin.Name);
+            _speed = newPlayerSkin.Speed;
+            _fuelCount = newPlayerSkin.FuelCount;
+            _mesh = newPlayerSkin.Mesh;
+            var newMesh = Instantiate(_mesh, playerTransform.position, playerTransform.rotation, gameObject.transform);
         }
+
+        //public void InitializeValues()
+        //{
+        //    var loadedData = LoadSaveData.LoadPlayer();
+
+        //    if(loadedData != null)
+        //    {
+        //        playerData = loadedData;
+        //    }
+        //    else
+        //    {
+        //        playerData = new PlayerData();
+        //    }
+
+        //}
 
         private void Movement()
         {
@@ -71,12 +80,13 @@ namespace PlayerScripts
 
         private IEnumerator FuelChanging()
         {
-            
+            var image = GameObject.Find("FuelImage");
+            var fillImage = image.GetComponent<Image>().fillAmount;
             while (_fuelCount > 0f)
             {
                 yield return new WaitForSeconds(1f);
                 _fuelCount -= 1f;
-                _fuelImage.fillAmount = _fuelCount / 100f;
+                fillImage = _fuelCount / 100f;
             }
         }
       

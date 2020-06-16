@@ -10,9 +10,9 @@ namespace SpawnFeatures
     {
         [SerializeField] private float speed;
         [SerializeField] private float hitPoints;
-        [SerializeField] private GameObject player;
         private float outPosZ = -25f;
         public float HitPoints => hitPoints;
+        private const string targetName = "Player";
         
         private void OnValidate()
         {
@@ -25,6 +25,7 @@ namespace SpawnFeatures
         private void Start()
         {
             gameObject.RemoveCloneFromName();
+            
         }
 
         private void OnEnable()
@@ -44,15 +45,22 @@ namespace SpawnFeatures
         private void Move()
         {
             float objectPosZ = transform.position.z;
+            var player = GameObject.Find(targetName);
 
-            if (objectPosZ > outPosZ)
+            if (GameController.Instance.State == GameState.Play)
             {
-                transform.Translate(player.transform.right * (speed * Time.deltaTime));
+                if (objectPosZ > outPosZ)
+                {
+                    transform.Translate(player.transform.right * (speed * Time.deltaTime));
+                }
+                else
+                {
+                    gameObject.GetComponent<PoolableObject>().ReturnToPool();
+                }
             }
-            else
-            {
-                gameObject.GetComponent<PoolableObject>().ReturnToPool();
-            }
+            
+           
         }
+
     }
 }

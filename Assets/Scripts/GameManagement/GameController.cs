@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
+using Extensions;
 using PlayerScripts;
-using ScriptableObjects;
 using UnityEngine;
 
-    public enum GameState                                           //ігровий стан - пауза і гра
+    public enum GameState                                          
     {
         Play,
         Pause
@@ -12,11 +11,12 @@ using UnityEngine;
 
     public class GameController : MonoBehaviour
     {
+        public Action OnScreenEventCalled;
         private static GameController _instance;
         private GameState _state;
-        private Player player;
 
-        public static GameController Instance                       //синглтон
+
+        public static GameController Instance                  
         {
             get
             {
@@ -34,7 +34,7 @@ using UnityEngine;
             }
         }
 
-        public GameState State                                      //якщо гра на паузі, то скейл часу = 0, якщо ні, то 1
+        public GameState State                                     
         {
             get { return _state; }
             set
@@ -52,5 +52,16 @@ using UnityEngine;
             }
         }
 
-    }
+        private void Awake()
+        {
+            State = GameState.Pause;
+        }
+
+        public void InstantiatePlayer()
+        {
+        var newPlayer = Instantiate(Resources.Load("Prefabs/Player")) as GameObject;
+        newPlayer.RemoveCloneFromName();
+        }
+
+}
 

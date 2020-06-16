@@ -1,37 +1,28 @@
 ﻿using ScriptableObjects;
 using Extensions;
-using PlayerScripts;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class ButtonSkin : MonoBehaviour
 {
+    public static event Action OnSkinChoosedEvent;
+    public static PlayerSkin NewSkin;
     private Button _button;
-    private PlayerSkin playerSkin;
 
     private void Awake()
     {
         _button = gameObject.GetComponent<Button>();
+
         gameObject.RemoveCloneFromName();
         _button.onClick.AddListener(ChoseSkin);
     }
 
     private void ChoseSkin()
     {
-        var text = gameObject.GetComponentInChildren<Text>();
-        playerSkin = Resources.Load<PlayerSkin>($"CarSkins/{text.text}");
+        NewSkin = Resources.Load<PlayerSkin>($"CarSkins/{gameObject.name}");
 
-        Debug.Log("Click! "+ playerSkin);
-        PlayerData playerData = new PlayerData();
-        playerData.SkinName = playerSkin.Name;
-
-        Debug.Log(playerData.SkinName);
-
-        GameController.Instance.State = GameState.Play;
+        OnSkinChoosedEvent?.Invoke();
     }
 
-    private void OnDestroy()
-    {
-        _button.onClick.RemoveListener(ChoseSkin);
-    }
 }
